@@ -2,11 +2,11 @@
 An Offline based activity tracker
 
 # What this is?
-This project is an android application that enables people to keep track of various activitie by enabling users to create events and also 
-and helping them track the events by making use of alarms, it also enables sharring an event by reading from a barcode
+This project consist of an android application that allows people to keep track of various activities by enabling
+ users to create events and helping them track these events by making use of alarms, it also enables sharing an event by reading from a qr-code
 
 # Why?
-This is just a utility tool that can be used in any way you can improvise upon
+This is just a utility tool that can be used in any way, you can improvise as you like
 
 # How to get started?
 Feel free to help make it a better tool or a better code
