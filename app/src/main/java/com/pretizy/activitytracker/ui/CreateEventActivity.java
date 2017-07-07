@@ -35,7 +35,6 @@ public class CreateEventActivity extends AppCompatActivity {
 
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
-    private SimpleDateFormat dateFormatter;
     @BindView(R.id.event_date)
     EditText date;
     @BindView(R.id.event_time)

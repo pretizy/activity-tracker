@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            switchScreen(ScheduleFragment.newInstance("", ""));
+            switchScreen(ScheduleFragment.newInstance());
             return true;
             // Handle the camera action
         } else if (id == R.id.nav_camera) {
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(intent, 900);
             return true;
         } else if (id == R.id.all_schedule) {
-            switchScreen(AllScheduleFragment.newInstance("", ""));
+            switchScreen(AllScheduleFragment.newInstance());
             return true;
         }
 
@@ -122,9 +122,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
             // This is important, otherwise the result will not be passed to the fragment
             super.onActivityResult(requestCode, resultCode, data);
-            switchScreen(ScheduleFragment.newInstance("", ""));
+            switchScreen(ScheduleFragment.newInstance());
     }
 }

@@ -24,7 +24,7 @@ public abstract class DbHelper<T> extends SQLiteOpenHelper{
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + EventReaderContract.EventEntry.TABLE_NAME;
-    private static final String DATABASE_NAME = "EpsTracker.db";
+    private static final String DATABASE_NAME = "ActivityTracker.db";
     private static final int DATABASE_VERSION = 3;
 
     public DbHelper(Context context) {
@@ -53,9 +53,7 @@ public abstract class DbHelper<T> extends SQLiteOpenHelper{
 
     public Cursor findAll(){
         SQLiteDatabase db = getReadableDatabase();
-
         // Filter results WHERE "title" = 'My Title'
-
        Cursor c = db.query(
                 getTableName(),                     // The table to query
                 null,                               // The columns to return

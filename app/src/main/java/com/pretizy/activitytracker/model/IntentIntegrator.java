@@ -44,7 +44,7 @@ public class IntentIntegrator {
             BS_PACKAGE, // Barcode Scanner
             BSPLUS_PACKAGE, // Barcode Scanner+
             BSPLUS_PACKAGE + ".simple" // Barcode Scanner+ Simple
-// What else supports this intent?
+            // What else supports this intent?
     );
     private final Activity activity;
     private String title;
@@ -122,9 +122,9 @@ public class IntentIntegrator {
     public final AlertDialog initiateScan(Collection<String> desiredBarcodeFormats) {
         Intent intentScan = new Intent(BS_PACKAGE + ".SCAN");
         intentScan.addCategory(Intent.CATEGORY_DEFAULT);
-// check which types of codes to scan for
+        // check which types of codes to scan for
         if (desiredBarcodeFormats != null) {
-// set the desired barcode types
+            // set the desired barcode types
             StringBuilder joinedByComma = new StringBuilder();
             for (String format : desiredBarcodeFormats) {
                 if (joinedByComma.length() > 0) {
@@ -174,7 +174,7 @@ public class IntentIntegrator {
                 try {
                     activity.startActivity(intent);
                 } catch (ActivityNotFoundException anfe) {
-// Hmm, market is not installed
+                    // Hmm, market is not installed
                     Log.w(TAG, "Google Play is not installed; cannot install " + packageName);
                 }
             }
@@ -228,7 +228,7 @@ public class IntentIntegrator {
         for (Map.Entry<String,Object> entry : moreExtras.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
-// Kind of hacky
+            // Kind of hacky
             if (value instanceof Integer) {
                 intent.putExtra(key, (Integer) value);
             } else if (value instanceof Long) {

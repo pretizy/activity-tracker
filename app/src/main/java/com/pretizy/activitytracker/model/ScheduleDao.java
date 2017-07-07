@@ -26,7 +26,7 @@ public class ScheduleDao extends DbHelper {
     }
 
     public boolean createSchedule(Schedule schedule){
-// Create a new map of values, where column names are the keys
+        // Create a new map of values, where column names are the keys
         Calendar c1 = Calendar.getInstance();
         c1.setTime(schedule.getTime());
         String date = c1.get(Calendar.DAY_OF_MONTH)+"/"+(c1.get(Calendar.MONTH)+1)+"/"+c1.get(Calendar.YEAR);
@@ -40,13 +40,12 @@ public class ScheduleDao extends DbHelper {
         values.put(EventReaderContract.EventEntry.COLUMN_NAME_TIME, time);
         values.put(EventReaderContract.EventEntry.COLUMN_NAME_AM_PM, schedule.getAm_pm());
 
-// Insert the new row, returning the primary key value of the new row
+        // Insert the new row, returning the primary key value of the new row
         schedule.setId(create(values));
         return schedule.getId()!=0? true:false;
     }
 
     public Schedule findSchedule(long id){
-
         return null;
     }
 
