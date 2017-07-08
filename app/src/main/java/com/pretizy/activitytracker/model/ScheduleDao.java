@@ -38,7 +38,7 @@ public class ScheduleDao extends DbHelper {
         values.put(EventReaderContract.EventEntry.COLUMN_NAME_CONTENT, schedule.getData());
         values.put(EventReaderContract.EventEntry.COLUMN_NAME_DATE, date);
         values.put(EventReaderContract.EventEntry.COLUMN_NAME_TIME, time);
-        values.put(EventReaderContract.EventEntry.COLUMN_NAME_AM_PM, schedule.getAm_pm());
+        values.put(EventReaderContract.EventEntry.COLUMN_NAME_AM_PM, schedule.getMeridian());
 
         // Insert the new row, returning the primary key value of the new row
         schedule.setId(create(values));
@@ -79,7 +79,7 @@ public class ScheduleDao extends DbHelper {
         schedule.setData(cursor.getString(cursor.getColumnIndexOrThrow(EventReaderContract.EventEntry.COLUMN_NAME_CONTENT)));
         String date_string = cursor.getString(cursor.getColumnIndexOrThrow(EventReaderContract.EventEntry.COLUMN_NAME_DATE));
         String time_string = cursor.getString(cursor.getColumnIndexOrThrow(EventReaderContract.EventEntry.COLUMN_NAME_TIME));
-        schedule.setAm_pm(cursor.getString(cursor.getColumnIndexOrThrow(EventReaderContract.EventEntry.COLUMN_NAME_AM_PM)));
+        schedule.setMeridian(cursor.getString(cursor.getColumnIndexOrThrow(EventReaderContract.EventEntry.COLUMN_NAME_AM_PM)));
         Date date = Schedule.retrieveDateFromString(date_string, time_string);
         schedule.setTime(date);
         schedule.setDate_string(date_string);

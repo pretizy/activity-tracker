@@ -24,7 +24,6 @@ import com.pretizy.activitytracker.R;
 import com.pretizy.activitytracker.model.Schedule;
 import com.pretizy.activitytracker.model.ScheduleDao;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -48,11 +47,10 @@ public class CreateEventActivity extends AppCompatActivity {
     @BindView(R.id.content)
     EditText content;
     private Date selectedDate;
-    private String am_pm;
+    private String meridian;
     private ScheduleDao scheduleDao;
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
-    private Intent myIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,18 +89,18 @@ public class CreateEventActivity extends AppCompatActivity {
         timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                am_pm = "";
+                meridian = "";
 
                 Calendar datetime = Calendar.getInstance();
                 datetime.set(Calendar.HOUR_OF_DAY, hourOfDay);
                 datetime.set(Calendar.MINUTE, minute);
 
                 if (datetime.get(Calendar.AM_PM) == Calendar.AM)
-                    am_pm = "AM";
+                    meridian = "AM";
                 else if (datetime.get(Calendar.AM_PM) == Calendar.PM)
-                    am_pm = "PM";
+                    meridian = "PM";
 
-                time.setText(hourOfDay + ":" + minute+" "+am_pm);
+                time.setText(hourOfDay + ":" + minute+" "+ meridian);
             }
         }, hour, minute, true);
 
@@ -135,7 +133,7 @@ public class CreateEventActivity extends AppCompatActivity {
                     Schedule schedule = new Schedule();
                     schedule.setTitle(title.getText().toString());
                     schedule.setData(content.getText().toString());
-                    schedule.setAm_pm(am_pm);
+                    schedule.setMeridian(meridian);
                     Date sdate = Schedule.retrieveDateFromString(date.getText().toString(), time.getText().toString());
                     schedule.setTime(sdate);
                     if(scheduleDao.createSchedule(schedule)){
