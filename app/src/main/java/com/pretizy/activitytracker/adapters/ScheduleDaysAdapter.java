@@ -84,7 +84,7 @@ public class ScheduleDaysAdapter extends RecyclerView.Adapter<ScheduleDaysAdapte
         long minute = (millis / (1000 * 60)) % 60;
         long hour = (millis / (1000 * 60 * 60)) % 24;
         hour+=1;
-        holder.time.setText(hour+":"+minute+" "+mDataset.get(position).getAm_pm());
+        holder.time.setText(hour+":"+minute+" "+mDataset.get(position).getMeridian());
         String title= mDataset.get(position).getTitle();
         if(title.length()>15){
             holder.title.setText(title.substring(0, 15)+"...");

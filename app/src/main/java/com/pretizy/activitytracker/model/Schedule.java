@@ -12,7 +12,7 @@ public class Schedule {
     private Long id;
     private String title;
     private Date time;
-    private String am_pm;
+    private String meridian;
     private String data;
     private String date_string;
     private String time_string;
@@ -53,12 +53,12 @@ public class Schedule {
         this.data = data;
     }
 
-    public String getAm_pm() {
-        return am_pm;
+    public String getMeridian() {
+        return meridian;
     }
 
-    public void setAm_pm(String am_pm) {
-        this.am_pm = am_pm;
+    public void setMeridian(String meridian) {
+        this.meridian = meridian;
     }
 
     public static Date retrieveDateFromString(String date, String time){
