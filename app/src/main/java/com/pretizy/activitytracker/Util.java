@@ -19,7 +19,7 @@ public class Util {
             schedule.setData(protocols[0]);
             schedule.setTitle(protocols[1]);
             schedule.setTime(Schedule.retrieveDateFromString(protocols[2], protocols[3]));
-            schedule.setAm_pm(protocols[4]);
+            schedule.setMeridian(protocols[4]);
         }
         return schedule;
     }
@@ -27,7 +27,7 @@ public class Util {
     public static String ScheduleToCode(Schedule schedule){
         String code = schedule.getData()+"-"+schedule.getTitle()+"-";
         code += schedule.getDate_string()+"-"+schedule.getTime_string()+"-";
-        code += schedule.getAm_pm();
+        code += schedule.getMeridian();
         return code;
     }
 

@@ -27,10 +27,10 @@ public class ScheduleDao extends DbHelper {
 
     public boolean createSchedule(Schedule schedule){
         // Create a new map of values, where column names are the keys
-        Calendar c1 = Calendar.getInstance();
-        c1.setTime(schedule.getTime());
-        String date = c1.get(Calendar.DAY_OF_MONTH)+"/"+(c1.get(Calendar.MONTH)+1)+"/"+c1.get(Calendar.YEAR);
-        String time = c1.get(Calendar.HOUR)+":"+c1.get(Calendar.MINUTE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(schedule.getTime());
+        String date = calendar.get(Calendar.DAY_OF_MONTH)+"/"+(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR);
+        String time = calendar.get(Calendar.HOUR)+":"+calendar.get(Calendar.MINUTE);
 
 
         ContentValues values = new ContentValues();
@@ -38,11 +38,11 @@ public class ScheduleDao extends DbHelper {
         values.put(EventReaderContract.EventEntry.COLUMN_NAME_CONTENT, schedule.getData());
         values.put(EventReaderContract.EventEntry.COLUMN_NAME_DATE, date);
         values.put(EventReaderContract.EventEntry.COLUMN_NAME_TIME, time);
-        values.put(EventReaderContract.EventEntry.COLUMN_NAME_AM_PM, schedule.getAm_pm());
+        values.put(EventReaderContract.EventEntry.COLUMN_NAME_AM_PM, schedule.getMeridian());
 
         // Insert the new row, returning the primary key value of the new row
         schedule.setId(create(values));
-        return schedule.getId()!=0? true:false;
+        return schedule.getId() != -1 ? true:false;
     }
 
     public Schedule findSchedule(long id){
@@ -51,14 +51,12 @@ public class ScheduleDao extends DbHelper {
 
     public List<Schedule> findAllSchedules(){
         Cursor cursor = findAll();
-        cursor.moveToFirst();
         List<Schedule> schedules = new ArrayList<>();
         while (cursor.moveToNext()){
             Schedule schedule= cursorToSchedule(cursor);
             schedules.add(schedule);
             schedule.setId(cursor.getLong(cursor.getColumnIndexOrThrow(BaseColumns._ID)));
         }
-
 
         return schedules;
     }
@@ -79,7 +77,7 @@ public class ScheduleDao extends DbHelper {
         schedule.setData(cursor.getString(cursor.getColumnIndexOrThrow(EventReaderContract.EventEntry.COLUMN_NAME_CONTENT)));
         String date_string = cursor.getString(cursor.getColumnIndexOrThrow(EventReaderContract.EventEntry.COLUMN_NAME_DATE));
         String time_string = cursor.getString(cursor.getColumnIndexOrThrow(EventReaderContract.EventEntry.COLUMN_NAME_TIME));
-        schedule.setAm_pm(cursor.getString(cursor.getColumnIndexOrThrow(EventReaderContract.EventEntry.COLUMN_NAME_AM_PM)));
+        schedule.setMeridian(cursor.getString(cursor.getColumnIndexOrThrow(EventReaderContract.EventEntry.COLUMN_NAME_AM_PM)));
         Date date = Schedule.retrieveDateFromString(date_string, time_string);
         schedule.setTime(date);
         schedule.setDate_string(date_string);
