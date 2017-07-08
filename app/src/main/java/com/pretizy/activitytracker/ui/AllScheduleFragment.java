@@ -2,7 +2,6 @@ package com.pretizy.activitytracker.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -19,7 +18,6 @@ import com.pretizy.activitytracker.adapters.ScheduleTableAdapter;
 import com.pretizy.activitytracker.model.Schedule;
 import com.pretizy.activitytracker.model.ScheduleDao;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -110,7 +108,6 @@ public class AllScheduleFragment extends Fragment {
         tableAdapter.notifyDataSetChanged();
         // This is important, otherwise the result will not be passed to the fragment
         super.onActivityResult(requestCode, resultCode, data);
-
     }
 
 }
