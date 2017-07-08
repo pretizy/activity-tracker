@@ -24,9 +24,6 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link AllScheduleFragment.} interface
- * to handle interaction events.
  * Use the {@link AllScheduleFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
@@ -41,7 +38,6 @@ public class AllScheduleFragment extends Fragment {
 
     private ScheduleFragment.OnFragmentInteractionListener mListener;
     private List<Schedule> schedules;
-    private RecyclerView.LayoutManager dLayoutManager;
     private View view;
 
     public AllScheduleFragment() {

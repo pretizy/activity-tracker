@@ -134,10 +134,8 @@ public class CreateEventActivity extends AppCompatActivity {
                     schedule.setTitle(title.getText().toString());
                     schedule.setData(content.getText().toString());
                     schedule.setMeridian(meridian);
-                    Date sdate = Schedule.retrieveDateFromString(date.getText().toString(), time.getText().toString());
-                    schedule.setTime(sdate);
+                    schedule.setTime(Schedule.retrieveDateFromString(date.getText().toString(), time.getText().toString()));
                     if(scheduleDao.createSchedule(schedule)){
-                        // Set the alarm to start at approximately 2:00 p.m.
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTimeInMillis(System.currentTimeMillis());
                         calendar.clear();
@@ -157,7 +155,6 @@ public class CreateEventActivity extends AppCompatActivity {
                                 calendar.getTimeInMillis(), pendingIntent);
                         finish();
                     }
-
                 }
             }
         });

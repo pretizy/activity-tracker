@@ -27,10 +27,10 @@ public class ScheduleDao extends DbHelper {
 
     public boolean createSchedule(Schedule schedule){
         // Create a new map of values, where column names are the keys
-        Calendar c1 = Calendar.getInstance();
-        c1.setTime(schedule.getTime());
-        String date = c1.get(Calendar.DAY_OF_MONTH)+"/"+(c1.get(Calendar.MONTH)+1)+"/"+c1.get(Calendar.YEAR);
-        String time = c1.get(Calendar.HOUR)+":"+c1.get(Calendar.MINUTE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(schedule.getTime());
+        String date = calendar.get(Calendar.DAY_OF_MONTH)+"/"+(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR);
+        String time = calendar.get(Calendar.HOUR)+":"+calendar.get(Calendar.MINUTE);
 
 
         ContentValues values = new ContentValues();
@@ -42,7 +42,7 @@ public class ScheduleDao extends DbHelper {
 
         // Insert the new row, returning the primary key value of the new row
         schedule.setId(create(values));
-        return schedule.getId()!=0? true:false;
+        return schedule.getId() != -1 ? true:false;
     }
 
     public Schedule findSchedule(long id){
@@ -51,14 +51,12 @@ public class ScheduleDao extends DbHelper {
 
     public List<Schedule> findAllSchedules(){
         Cursor cursor = findAll();
-        cursor.moveToFirst();
         List<Schedule> schedules = new ArrayList<>();
         while (cursor.moveToNext()){
             Schedule schedule= cursorToSchedule(cursor);
             schedules.add(schedule);
             schedule.setId(cursor.getLong(cursor.getColumnIndexOrThrow(BaseColumns._ID)));
         }
-
 
         return schedules;
     }
